@@ -44,6 +44,10 @@
 					<groupId>software.amazon.awssdk</groupId>
 					<artifactId>netty-nio-client</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>software.amazon.awssdk</groupId>
+					<artifactId>apache-client</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -64,10 +68,15 @@
 			<artifactId>aws-serverless-java-container-core</artifactId>
 			<version>2.1.0</version>
 		</dependency>
-
+		<!-- 
 		<dependency>
 			<groupId>software.amazon.awssdk</groupId>
 			<artifactId>apache-client</artifactId>
+		</dependency>
+		-->
+		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>url-connection-client</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
