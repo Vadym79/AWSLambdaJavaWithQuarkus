@@ -36,7 +36,7 @@ public class DynamoProductDao implements ProductDao {
 
   // needs quarkus-amazon-dynamodb extension (see pom.xml) because of https://quarkus.io/guides/writing-native-applications-tips
   // Detected an instance of Random/SplittableRandom class in the image heap problem
-  private static final DynamoDbClient dynamoDbClient = DynamoDbClient.builder()
+  private final DynamoDbClient dynamoDbClient = DynamoDbClient.builder()
     .credentialsProvider(DefaultCredentialsProvider.create())
     .region(Region.EU_CENTRAL_1)
     .overrideConfiguration(ClientOverrideConfiguration.builder()
