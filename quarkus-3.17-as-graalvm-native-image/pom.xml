@@ -118,6 +118,9 @@
 				</property>
 			</activation>
 			<properties>
+				<quarkus.native.additional-build-args>
+					--initialize-at-run-time=software.amazonaws.example.product.dao
+				</quarkus.native.additional-build-args>
 				<quarkus.native.enabled>true</quarkus.native.enabled>
 			</properties>
 		</profile>
