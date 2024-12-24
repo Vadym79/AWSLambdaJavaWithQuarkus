@@ -45,7 +45,6 @@ public class DynamoProductDao implements ProductDao {
     .build();
 
   
-  
   @Override
   public Optional<Product> getProduct(String id) {
     GetItemResponse getItemResponse = dynamoDbClient.getItem(GetItemRequest.builder()
