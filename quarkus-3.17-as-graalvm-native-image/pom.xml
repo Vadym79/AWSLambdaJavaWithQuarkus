@@ -47,10 +47,6 @@
 			<exclusions>
 				<exclusion>
 					<groupId>software.amazon.awssdk</groupId>
-					<artifactId>netty-nio-client</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>software.amazon.awssdk</groupId>
 					<artifactId>apache-client</artifactId>
 				</exclusion>
 			</exclusions>
