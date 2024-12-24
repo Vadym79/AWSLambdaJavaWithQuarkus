@@ -133,7 +133,7 @@
 			</activation>
 			<properties>
 				<quarkus.native.additional-build-args>
-					--initialize-at-run-time=software.amazon.awssdk.core.retry.backoff
+					--initialize-at-run-time=software.amazonaws.example
 				</quarkus.native.additional-build-args>
 				<quarkus.native.enabled>true</quarkus.native.enabled>
 			</properties>

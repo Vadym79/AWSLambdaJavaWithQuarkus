@@ -41,6 +41,10 @@ public class DynamoProductDao implements ProductDao {
     .httpClient(UrlConnectionHttpClient.builder().build())
     .build();
 
+  public DynamoProductDao () {
+	  
+  }
+  
   @Override
   public Optional<Product> getProduct(String id) {
     GetItemResponse getItemResponse = dynamoDbClient.getItem(GetItemRequest.builder()
