@@ -133,7 +133,7 @@
 			</activation>
 			<properties>
 				<quarkus.native.additional-build-args>
-					--initialize-at-run-time=software.amazonaws.example.dao,software.amazonaws.example.handler
+					--initialize-at-run-time=software.amazonaws.example.dao\\,software.amazonaws.example.handler
 				</quarkus.native.additional-build-args>
 				<quarkus.native.enabled>true</quarkus.native.enabled>
 			</properties>
