@@ -27,3 +27,12 @@
 
 8) Needs quarkus-amazon-dynamodb extension (see pom.xml) because of https://quarkus.io/guides/writing-native-applications-tips
    Detected an instance of Random/SplittableRandom class in the image heap problem
+
+9) Quarkus native build properties hav to stay like this to avoid DynamoProductDao instantiation at build time 
+
+<properties>
+	<quarkus.native.additional-build-args>
+	--initialize-at-run-time=software.amazonaws.example.product.dao
+	</quarkus.native.additional-build-args>
+	<quarkus.native.enabled>true</quarkus.native.enabled>
+</properties>
