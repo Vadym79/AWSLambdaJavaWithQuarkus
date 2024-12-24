@@ -97,7 +97,7 @@
 						<executions>
 							<execution>
 								<goals>
-									<goal>native-image</goal>
+									<goal>native-image-agent</goal>
 								</goals>
 								<configuration>
 									<enableHttpUrlHandler>true</enableHttpUrlHandler>
@@ -112,17 +112,6 @@
 							<release>21</release>
 						</configuration>
 						<version>3.13.0</version>
-					</plugin>
-					<plugin>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>3.5.2</version>
-						<configuration>
-							<systemPropertyVariables>
-								<java.util.logging.manager>
-									org.jboss.logmanager.LogManager</java.util.logging.manager>
-								<maven.home>${maven.home}</maven.home>
-							</systemPropertyVariables>
-						</configuration>
 					</plugin>
 					<plugin>
 						<artifactId>maven-assembly-plugin</artifactId>
