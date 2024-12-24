@@ -89,16 +89,6 @@
 			<artifactId>commons-logging</artifactId>
 			<version>1.3.4</version>
 		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-api</artifactId>
-		</dependency>
-
 	</dependencies>
 	<build>
 		<plugins>
@@ -133,9 +123,6 @@
 				</property>
 			</activation>
 			<properties>
-				<quarkus.native.additional-build-args>
-					--initialize-at-run-time=software.amazonaws.example.product.dao
-				</quarkus.native.additional-build-args>
 				<quarkus.native.enabled>true</quarkus.native.enabled>
 			</properties>
 		</profile>

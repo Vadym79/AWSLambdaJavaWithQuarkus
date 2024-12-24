@@ -13,9 +13,7 @@ Globals:
   Function:
     Handler: io.quarkus.amazon.lambda.runtime.QuarkusStreamHandler::handleRequest
     CodeUri: target/function.zip
-    Runtime: java21
-    SnapStart:
-     ApplyOn: PublishedVersions     
+    Runtime: provided.al2023  
     Timeout: 30 
     MemorySize: 1024
     Architectures:
@@ -24,7 +22,6 @@ Globals:
     #Tracing: Active
     Environment:
       Variables:
-        JAVA_TOOL_OPTIONS: "-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
         PRODUCT_TABLE_NAME: !Ref ProductsTable
 
 Resources:
@@ -33,8 +30,8 @@ Resources:
     Properties:
       StageName: !Ref Stage
       #TracingEnabled: true
-      Name: AWSLambdaQuarkus317API
-      Description: Api for AWSLambdaQuarkus 3.17 
+      Name: AWSLambdaQuarkus317APIGraalVMNativeImage
+      Description: Api for AWSLambdaQuarkus 3.17 with GraalVM Native Image 
       AccessLogSetting:
         DestinationArn: !Sub ${MyApiLogGroup.Arn} # This Log Group is already created within our SAM Template
         Format: "{'integrationLatency':'$context.integrationLatency', 'latency':'$context.responseLatency', 'requestId':'$context.requestId', 'ip': '$context.identity.sourceIp', 'caller':'$context.identity.caller', 'user':'$context.identity.user','requestTime':'$context.requestTime', 'xrayTraceId':'$context.xrayTraceId', 'wafResponseCode':'$context.wafResponseCode', 'httpMethod':'$context.httpMethod','resourcePath':'$context.resourcePath', 'status':'$context.status','protocol':'$context.protocol', 'responseLength':'$context.responseLength' }"
@@ -98,7 +95,6 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: GetProductByIdWithWithQuarkus317GVMNI
-      AutoPublishAlias: liveVersion
       Policies:
         - DynamoDBReadPolicy:
             TableName: !Ref ProductsTable
@@ -125,7 +121,6 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: PutProductWithQuarkus317GVMNI
-      AutoPublishAlias: liveVersion 
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref ProductsTable
