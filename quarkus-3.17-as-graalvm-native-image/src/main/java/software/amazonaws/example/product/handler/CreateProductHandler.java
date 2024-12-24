@@ -19,11 +19,7 @@ import software.amazonaws.example.product.entity.Product;
 public class CreateProductHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
 	private final ObjectMapper objectMapper = new ObjectMapper();
-	private final ProductDao productDao;
-	
-	public CreateProductHandler() {
-		productDao = new DynamoProductDao();
-	}
+	private final ProductDao productDao = new DynamoProductDao();
 	
 	@Override
 	public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent requestEvent, Context context) {

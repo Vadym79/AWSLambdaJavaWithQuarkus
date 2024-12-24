@@ -22,12 +22,7 @@ public class GetProductByIdHandler
 		implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
 	private final ObjectMapper objectMapper = new ObjectMapper();
-	
-	private final ProductDao productDao;
-	
-	public GetProductByIdHandler () {
-		productDao = new DynamoProductDao();
-	}
+	private final ProductDao productDao = new DynamoProductDao();
 	
 	@Override
 	public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent requestEvent, Context context) {
