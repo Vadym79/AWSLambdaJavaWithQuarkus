@@ -133,8 +133,8 @@
 			</activation>
 			<properties>
 				<quarkus.native.additional-build-args>
-					--initialize-at-build-time=sun.security.ssl.SSLSocketFactoryImpl
-				</quarkus.native.additional-build-args>
+					--initialize-at-run-time=sun.security.ssl.SSLSocketFactoryImpl
+				</quarkus.native.additional-run-args>
 				<quarkus.native.enabled>true</quarkus.native.enabled>
 			</properties>
 		</profile>
