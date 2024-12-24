@@ -133,7 +133,7 @@
 			</activation>
 			<properties>
 				<quarkus.native.additional-build-args>
-					--trace-object-instantiation=java.util.Random
+					--initialize-at-run-time=software.amazon.awssdk.core.retry.backoff
 				</quarkus.native.additional-build-args>
 				<quarkus.native.enabled>true</quarkus.native.enabled>
 			</properties>
