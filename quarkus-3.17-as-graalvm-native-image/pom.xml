@@ -133,7 +133,7 @@
 			</activation>
 			<properties>
 				<quarkus.native.additional-build-args>
-					--initialize-at-run-time=software.amazonaws.example.product.handler.CreateProductHandler\\,software.amazonaws.example.product.handler.GetProductByIdProductHandler\\,software.amazonaws.example.product.dao.DynamoProductDao
+					--initialize-at-run-time=software.amazonaws.example.product.handler.CreateProductHandler\,software.amazonaws.example.product.handler.GetProductByIdProductHandler\,software.amazonaws.example.product.dao.DynamoProductDao
 				</quarkus.native.additional-build-args>
 				<quarkus.native.enabled>true</quarkus.native.enabled>
 			</properties>
