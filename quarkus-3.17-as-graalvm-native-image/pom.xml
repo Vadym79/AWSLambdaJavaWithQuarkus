@@ -125,8 +125,7 @@
 			<properties>
 				<quarkus.native.enabled>true</quarkus.native.enabled>
 				<quarkus.native.additional-build-args>
-					--initialize-at-build-time=org.apache.commons.logging.impl.Log4JLogger,\
-					org.apache.commons.logging.impl.Log4jApiLogFactory
+					--initialize-at-build-time=org.apache.commons.logging.impl.Log4JLogger
 				</quarkus.native.additional-build-args>
 			</properties>
 		</profile>
