@@ -11,6 +11,7 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import software.amazon.awssdk.http.HttpStatusCode;
 import software.amazonaws.example.product.dao.DynamoProductDao;
@@ -22,7 +23,9 @@ public class GetProductByIdHandler
 		implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
 	private final ObjectMapper objectMapper = new ObjectMapper();
-	private final ProductDao productDao = new DynamoProductDao();
+	
+	@Inject
+	private DynamoProductDao productDao;
 	
 	@Override
 	public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent requestEvent, Context context) {
