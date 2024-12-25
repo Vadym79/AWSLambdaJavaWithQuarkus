@@ -21,8 +21,7 @@ public class CreateProductHandler implements RequestHandler<APIGatewayProxyReque
 
 	private final ObjectMapper objectMapper = new ObjectMapper();
 	
-	@Inject
-	private DynamoProductDao productDao;
+	private final ProductDao productDao = new DynamoProductDao();
 
 	
 	@Override
