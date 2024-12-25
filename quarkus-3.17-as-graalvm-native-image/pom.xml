@@ -5,7 +5,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>software.amazonaws.example</groupId>
-	<artifactId>aws-lambda-quarkus-3.17</artifactId>
+	<artifactId>aws-lambda-as-graavlvm-native-quarkus-3.17</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
