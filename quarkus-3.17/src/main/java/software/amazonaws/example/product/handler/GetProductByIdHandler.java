@@ -27,7 +27,6 @@ public class GetProductByIdHandler
 	private DynamoProductDao productDao;
 	
 	
-	
 	@Override
 	public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent requestEvent, Context context) {
 		String id = requestEvent.getPathParameters().get("id");
