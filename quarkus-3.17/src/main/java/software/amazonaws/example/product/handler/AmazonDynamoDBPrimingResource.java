@@ -8,9 +8,12 @@ import org.crac.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import io.quarkus.runtime.Startup;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import software.amazonaws.example.product.dao.DynamoProductDao;
 import software.amazonaws.example.product.dao.ProductDao;
 
@@ -21,7 +24,11 @@ public class AmazonDynamoDBPrimingResource implements Resource {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AmazonDynamoDBPrimingResource.class);
 	
-	private final ProductDao productDao = new DynamoProductDao();
+    @Inject
+	private ObjectMapper objectMapper;
+	
+	@Inject
+	private DynamoProductDao productDao;	
 	
 	
     @PostConstruct
