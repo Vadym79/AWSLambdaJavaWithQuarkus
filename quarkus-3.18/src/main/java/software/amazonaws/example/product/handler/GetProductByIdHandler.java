@@ -21,7 +21,8 @@ import software.amazonaws.example.product.entity.Product;
 public class GetProductByIdHandler
 		implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
-	private final ObjectMapper objectMapper = new ObjectMapper();
+	@Inject
+	private ObjectMapper objectMapper;
 	
 	@Inject
 	private DynamoProductDao productDao;
@@ -47,5 +48,4 @@ public class GetProductByIdHandler
 					.withBody("Internal Server Error :: " + je.getMessage());
 		}
 	}
-
 }
