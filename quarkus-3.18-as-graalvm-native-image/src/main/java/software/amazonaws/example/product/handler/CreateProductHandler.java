@@ -9,7 +9,6 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import software.amazon.awssdk.http.HttpStatusCode;
 import software.amazonaws.example.product.dao.DynamoProductDao;
