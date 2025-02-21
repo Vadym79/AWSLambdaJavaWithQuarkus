@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 import jakarta.enterprise.context.ApplicationScoped;
 import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
 import software.amazon.awssdk.core.client.config.ClientOverrideConfiguration;
-import software.amazon.awssdk.http.apache.ApacheHttpClient;
+import software.amazon.awssdk.http.urlconnection.UrlConnectionHttpClient;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
@@ -42,7 +42,7 @@ public class DynamoProductDao implements ProductDao {
     .region(Region.EU_CENTRAL_1)
     .overrideConfiguration(ClientOverrideConfiguration.builder()
       .build())
-    .httpClient(ApacheHttpClient.builder().build())
+    .httpClient(UrlConnectionHttpClient.builder().build())
     .build();
 
   
