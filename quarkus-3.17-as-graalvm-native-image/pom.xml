@@ -5,7 +5,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>software.amazonaws.example</groupId>
-	<artifactId>aws-lambda-as-graavlvm-native-image-quarkus-3.17</artifactId>
+	<artifactId>aws-lambda-as-graalvm-native-image-quarkus-3.17</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -60,16 +60,6 @@
 			<groupId>com.amazonaws</groupId>
 			<artifactId>aws-lambda-java-events</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>io.github.crac</groupId>
-			<artifactId>org-crac</artifactId>
-		</dependency>
-		<!-- 
-		<dependency>
-			<groupId>software.amazon.awssdk</groupId>
-			<artifactId>apache-client</artifactId>
-		</dependency>
-		-->
 		<dependency>
 			<groupId>software.amazon.awssdk</groupId>
 			<artifactId>url-connection-client</artifactId>
