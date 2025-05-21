@@ -18,7 +18,7 @@ import software.amazonaws.example.product.dao.DynamoProductDao;
 import software.amazonaws.example.product.dao.ProductDao;
 
 
-@Startup
+//@Startup
 @ApplicationScoped
 public class AmazonDynamoDBPrimingResource implements Resource {
 	

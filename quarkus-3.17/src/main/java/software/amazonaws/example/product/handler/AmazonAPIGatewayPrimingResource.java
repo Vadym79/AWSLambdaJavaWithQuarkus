@@ -12,15 +12,12 @@ import org.crac.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.amazonaws.serverless.proxy.model.ApiGatewayRequestIdentity;
-import com.amazonaws.serverless.proxy.model.AwsProxyRequest;
-import com.amazonaws.serverless.proxy.model.AwsProxyRequestContext;
+import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 import io.quarkus.amazon.lambda.runtime.QuarkusStreamHandler;
-import io.quarkus.runtime.Startup;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 
@@ -53,6 +50,7 @@ public class AmazonAPIGatewayPrimingResource implements Resource {
 		return ow.writeValueAsBytes(getAwsProxyRequest());
 	}
 	
+	/*
     private static AwsProxyRequest getAwsProxyRequest () {
     	final AwsProxyRequest awsProxyRequest = new AwsProxyRequest ();
     	awsProxyRequest.setHttpMethod("GET");
@@ -65,5 +63,25 @@ public class AmazonAPIGatewayPrimingResource implements Resource {
     	awsProxyRequestContext.setIdentity(apiGatewayRequestIdentity);
     	awsProxyRequest.setRequestContext(awsProxyRequestContext);
     	return awsProxyRequest;		
+    }
+    */
+	
+    private static APIGatewayProxyRequestEvent getAwsProxyRequest () {
+    	final APIGatewayProxyRequestEvent aPIGatewayProxyRequestEvent = new APIGatewayProxyRequestEvent ();
+    	aPIGatewayProxyRequestEvent.setHttpMethod("GET");
+    	aPIGatewayProxyRequestEvent.setPathParameters(Map.of("id","0"));
+    	
+    	/*
+    	aPIGatewayProxyRequestEvent.setPath("/products/0");
+    	aPIGatewayProxyRequestEvent.setResource("/products/{id}");
+    	
+    	final ProxyRequestContext proxyRequestContext = new ProxyRequestContext();
+    	final RequestIdentity requestIdentity= new RequestIdentity();
+    	requestIdentity.setApiKey("blabla");
+    	proxyRequestContext.setIdentity(requestIdentity);
+    	aPIGatewayProxyRequestEvent.setRequestContext(proxyRequestContext);
+    	*/
+    	return aPIGatewayProxyRequestEvent;
+    			
     }
 }
