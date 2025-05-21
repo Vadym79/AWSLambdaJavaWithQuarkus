@@ -17,7 +17,7 @@ import jakarta.inject.Inject;
 import software.amazonaws.example.product.dao.DynamoProductDao;
 
 
-@Startup
+//@Startup
 @ApplicationScoped
 public class AmazonDynamoDBPrimingResource implements Resource {
 	

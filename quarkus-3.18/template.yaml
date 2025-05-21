@@ -24,7 +24,7 @@ Globals:
     #Tracing: Active
     Environment:
       Variables:
-        #JAVA_TOOL_OPTIONS: "-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
+        JAVA_TOOL_OPTIONS: "-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
         PRODUCT_TABLE_NAME: !Ref ProductsTable
 
 Resources:
@@ -64,7 +64,7 @@ Resources:
       UsagePlanName: AWSLambdaQuarkus318APIUsagePlan
       Description: Usage plan for AWSLambdaQuarkus318API
       Quota:
-          Limit: 500000
+          Limit: 2000000
           Period: DAY
       Throttle:
           RateLimit:  10000
