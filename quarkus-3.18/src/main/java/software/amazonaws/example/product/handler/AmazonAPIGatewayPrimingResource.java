@@ -40,7 +40,7 @@ public class AmazonAPIGatewayPrimingResource implements Resource {
 	public void beforeCheckpoint(org.crac.Context<? extends Resource> context) throws Exception {
 		logger.info("enter before checkpoint method");
 		new QuarkusStreamHandler().handleRequest
-		 (new ByteArrayInputStream(convertAwsProxRequestToJsonBytes()), 
+		 (new ByteArrayInputStream(convertAwsProxyRequestToJsonBytes()), 
 				 new ByteArrayOutputStream(), new MockLambdaContext());
 	}
 
@@ -48,7 +48,7 @@ public class AmazonAPIGatewayPrimingResource implements Resource {
 	public void afterRestore(org.crac.Context<? extends Resource> context) throws Exception {
 	}
 	
-	private static byte[] convertAwsProxRequestToJsonBytes () throws JsonProcessingException {
+	private static byte[] convertAwsProxyRequestToJsonBytes () throws JsonProcessingException {
 		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 		return ow.writeValueAsBytes(getAwsProxyRequest());
 	}
