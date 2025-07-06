@@ -55,8 +55,7 @@ public class AmazonAPIGatewayPrimingResource implements Resource {
 	}
 	
 	private byte[] convertAwsProxyRequestToJsonBytes (APIGatewayProxyRequestEvent requestEvent) throws JsonProcessingException {
-		ObjectWriter ow = this.objectMapper.writer().withDefaultPrettyPrinter();
-		return ow.writeValueAsBytes(requestEvent);
+		return this.objectMapper.writeValueAsBytes(requestEvent);
 	}
 	
 	
