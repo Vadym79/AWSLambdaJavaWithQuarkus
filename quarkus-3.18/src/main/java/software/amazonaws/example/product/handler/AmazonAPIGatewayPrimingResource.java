@@ -13,8 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
-import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent.ProxyRequestContext;
-import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent.RequestIdentity;
+import com.amazonaws.services.lambda.runtime.serialization.events.LambdaEventSerializers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -23,6 +22,7 @@ import io.quarkus.amazon.lambda.runtime.QuarkusStreamHandler;
 import io.quarkus.runtime.Startup;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 
 @Startup
@@ -30,6 +30,9 @@ import jakarta.enterprise.context.ApplicationScoped;
 public class AmazonAPIGatewayPrimingResource implements Resource {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AmazonAPIGatewayPrimingResource.class);
+	
+	@Inject 
+	ObjectMapper objectMapper;
 	
     @PostConstruct
 	public void init () {
@@ -39,8 +42,11 @@ public class AmazonAPIGatewayPrimingResource implements Resource {
 	@Override
 	public void beforeCheckpoint(org.crac.Context<? extends Resource> context) throws Exception {
 		logger.info("enter before checkpoint method");
+		APIGatewayProxyRequestEvent requestEvent = LambdaEventSerializers
+				.serializerFor(APIGatewayProxyRequestEvent.class, AmazonAPIGatewayPrimingResource.class.getClassLoader())
+				.fromJson(this.getAwsProxyRequestAsJson());
 		new QuarkusStreamHandler().handleRequest
-		 (new ByteArrayInputStream(convertAwsProxyRequestToJsonBytes()), 
+		 (new ByteArrayInputStream(this.convertAwsProxyRequestToJsonBytes(requestEvent)), 
 				 new ByteArrayOutputStream(), new MockLambdaContext());
 	}
 
@@ -48,38 +54,24 @@ public class AmazonAPIGatewayPrimingResource implements Resource {
 	public void afterRestore(org.crac.Context<? extends Resource> context) throws Exception {
 	}
 	
-	private static byte[] convertAwsProxyRequestToJsonBytes () throws JsonProcessingException {
-		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-		return ow.writeValueAsBytes(getAwsProxyRequest());
+	private byte[] convertAwsProxyRequestToJsonBytes (APIGatewayProxyRequestEvent requestEvent) throws JsonProcessingException {
+		ObjectWriter ow = this.objectMapper.writer().withDefaultPrettyPrinter();
+		return ow.writeValueAsBytes(requestEvent);
 	}
 	
-	/*
-    private static AwsProxyRequest getAwsProxyRequest () {
-    	final AwsProxyRequest awsProxyRequest = new AwsProxyRequest ();
-    	awsProxyRequest.setHttpMethod("GET");
-    	awsProxyRequest.setPath("/products/0");
-    	
-    	awsProxyRequest.setResource("/products/{id}");
-    	awsProxyRequest.setPathParameters(Map.of("id","0"));
-    	final AwsProxyRequestContext awsProxyRequestContext = new AwsProxyRequestContext();
-    	final ApiGatewayRequestIdentity apiGatewayRequestIdentity= new ApiGatewayRequestIdentity();
-    	apiGatewayRequestIdentity.setApiKey("blabla");
-    	awsProxyRequestContext.setIdentity(apiGatewayRequestIdentity);
-    	awsProxyRequest.setRequestContext(awsProxyRequestContext);
-    	
-    	return awsProxyRequest;		
-    }
-    */
+	
+	private String getAwsProxyRequestAsJson() throws JsonProcessingException {
+		return this.objectMapper.writeValueAsString(getAwsProxyRequest());
+	}
     
     private static APIGatewayProxyRequestEvent getAwsProxyRequest () {
     	final APIGatewayProxyRequestEvent aPIGatewayProxyRequestEvent = new APIGatewayProxyRequestEvent ();
     	aPIGatewayProxyRequestEvent.setHttpMethod("GET");
+    	aPIGatewayProxyRequestEvent.setPath("/products/0");
     	aPIGatewayProxyRequestEvent.setPathParameters(Map.of("id","0"));
+    	//aPIGatewayProxyRequestEvent.setResource("/products/{id}");
     	
     	/*
-    	aPIGatewayProxyRequestEvent.setPath("/products/0");
-    	aPIGatewayProxyRequestEvent.setResource("/products/{id}");
-    	
     	final ProxyRequestContext proxyRequestContext = new ProxyRequestContext();
     	final RequestIdentity requestIdentity= new RequestIdentity();
     	requestIdentity.setApiKey("blabla");
