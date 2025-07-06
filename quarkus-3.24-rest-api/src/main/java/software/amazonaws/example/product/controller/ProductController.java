@@ -8,7 +8,6 @@ import java.util.Optional;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import org.jboss.resteasy.reactive.RestPath;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,6 +16,7 @@ import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.core.Response;
 import software.amazonaws.example.product.dao.ProductDao;
 import software.amazonaws.example.product.entity.Product;
@@ -40,7 +40,7 @@ public class ProductController {
 
 	@GET
 	@Path("/{id}")
-	public Response getProductById(@RestPath String id) {
+	public Response getProductById(@PathParam("id") String id) {
 		logger.info("entered get product by id "+id);
 		Optional<Product> optionalProduct = productDao.getProduct(id);
 		if (optionalProduct.isPresent()) {
