@@ -14,8 +14,8 @@ Globals:
     Handler: io.quarkus.amazon.lambda.runtime.QuarkusStreamHandler::handleRequest
     CodeUri: target/function.zip
     Runtime: java21
-    #SnapStart:
-     #ApplyOn: PublishedVersions     
+    SnapStart:
+      ApplyOn: PublishedVersions     
     Timeout: 30 
     MemorySize: 1024
     Architectures:

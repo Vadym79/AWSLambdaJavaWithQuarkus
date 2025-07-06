@@ -34,7 +34,7 @@ public class DynamoProductDao implements ProductDao {
   private static final String PRODUCT_TABLE_NAME = System.getenv("PRODUCT_TABLE_NAME");
 
   private static final DynamoDbClient dynamoDbClient = DynamoDbClient.builder()
-    .credentialsProvider(DefaultCredentialsProvider.create())
+    .credentialsProvider(DefaultCredentialsProvider.builder().build())
     .region(Region.EU_CENTRAL_1)
     .overrideConfiguration(ClientOverrideConfiguration.builder()
       .build())
