@@ -32,7 +32,7 @@ import software.amazonaws.example.product.entity.Products;
 public class DynamoProductDao implements ProductDao {
 	
   private static final Logger logger = LoggerFactory.getLogger(DynamoProductDao.class);
-  private static final String PRODUCT_TABLE_NAME = System.getenv("PRODUCT_TABLE_NAME");
+  
 
   // needs quarkus-amazon-dynamodb extension (see pom.xml) because of https://quarkus.io/guides/writing-native-applications-tips
   // Detected an instance of Random/SplittableRandom class in the image heap problem
@@ -48,6 +48,7 @@ public class DynamoProductDao implements ProductDao {
   
   @Override
   public Optional<Product> getProduct(String id) {
+    String PRODUCT_TABLE_NAME = System.getenv("PRODUCT_TABLE_NAME");
     GetItemResponse getItemResponse = dynamoDbClient.getItem(GetItemRequest.builder()
       .key(Map.of("PK", AttributeValue.builder().s(id).build()))
       .tableName(PRODUCT_TABLE_NAME)
@@ -61,6 +62,7 @@ public class DynamoProductDao implements ProductDao {
 
   @Override
   public void putProduct(Product product) {
+    String PRODUCT_TABLE_NAME = System.getenv("PRODUCT_TABLE_NAME");
     dynamoDbClient.putItem(PutItemRequest.builder()
       .tableName(PRODUCT_TABLE_NAME)
       .item(ProductMapper.productToDynamoDb(product))
@@ -69,6 +71,7 @@ public class DynamoProductDao implements ProductDao {
 
   @Override
   public void deleteProduct(String id) {
+    String PRODUCT_TABLE_NAME = System.getenv("PRODUCT_TABLE_NAME");
     dynamoDbClient.deleteItem(DeleteItemRequest.builder()
       .tableName(PRODUCT_TABLE_NAME)
       .key(Map.of("PK", AttributeValue.builder().s(id).build()))
@@ -77,6 +80,7 @@ public class DynamoProductDao implements ProductDao {
 
   @Override
   public Products getAllProduct() {
+    String PRODUCT_TABLE_NAME = System.getenv("PRODUCT_TABLE_NAME");
     ScanResponse scanResponse = dynamoDbClient.scan(ScanRequest.builder()
       .tableName(PRODUCT_TABLE_NAME)
       .limit(20)

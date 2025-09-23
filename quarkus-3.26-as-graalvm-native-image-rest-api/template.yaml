@@ -98,9 +98,6 @@ Resources:
       Policies:
         - DynamoDBReadPolicy:
             TableName: !Ref ProductsTable
-      Environment:
-        Variables:
-          QUARKUS_LAMBDA_HANDLER: getProductById
       Events:
         GetRequestById:
           Type: Api
@@ -124,9 +121,6 @@ Resources:
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref ProductsTable
-      Environment:
-        Variables:
-          QUARKUS_LAMBDA_HANDLER: putProduct
       Events:
         PutRequest:
           Type: Api

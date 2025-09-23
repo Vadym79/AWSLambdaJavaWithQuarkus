@@ -48,7 +48,7 @@
 		<dependency>
             <groupId>io.quarkiverse.amazonservices</groupId>
             <artifactId>quarkus-amazon-dynamodb</artifactId>
-            <version>3.2.0</version>
+            <version>3.9.1</version>
         </dependency>
         
 		<dependency>
@@ -91,7 +91,7 @@
 			<plugin>
 				<groupId>io.quarkus</groupId>
 				<artifactId>quarkus-maven-plugin</artifactId>
-				<version>3.18.3</version>
+				<version>3.26.4</version>
 				<executions>
 					<execution>
 						<goals>
@@ -104,9 +104,9 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<release>21</release>
+					<release>25</release>
 				</configuration>
-				<version>3.13.0</version>
+				<version>3.14.0</version>
 			</plugin>
 		</plugins>
 	</build>
@@ -119,9 +119,6 @@
 				</property>
 			</activation>
 			<properties>
-				<quarkus.native.additional-build-args>
-					--initialize-at-run-time=software.amazonaws.example.product.dao
-				</quarkus.native.additional-build-args>
 				<quarkus.native.enabled>true</quarkus.native.enabled>
 			</properties>
 		</profile>
