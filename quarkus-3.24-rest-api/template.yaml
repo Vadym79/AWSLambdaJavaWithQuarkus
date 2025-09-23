@@ -97,7 +97,7 @@ Resources:
   GetProductByIdFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: GetProductByIdWithWithQuarkus324Rest
+      FunctionName: GetProductByIdWithQuarkus324Rest
       AutoPublishAlias: liveVersion
       Policies:
         - DynamoDBReadPolicy:

@@ -94,7 +94,7 @@ Resources:
   GetProductByIdFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: GetProductByIdWithWithQuarkus326GVMNI
+      FunctionName: GetProductByIdWithQuarkus326GVMNI
       Policies:
         - DynamoDBReadPolicy:
             TableName: !Ref ProductsTable
