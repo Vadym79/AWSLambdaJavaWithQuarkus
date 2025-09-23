@@ -30,7 +30,7 @@ Resources:
     Properties:
       StageName: !Ref Stage
       #TracingEnabled: true
-      Name: AWSLambdaGraalVMNativeImageQuarkus326APIRestAPI
+      Name: AWSLambdaGraalVMNativeImageQuarkus326RestAPI
       Description: Api for AWSLambdaQuarkus 3.26 with GraalVM Native Image Rest API 
       AccessLogSetting:
         DestinationArn: !Sub ${MyApiLogGroup.Arn} # This Log Group is already created within our SAM Template
